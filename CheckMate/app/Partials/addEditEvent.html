@@ -1,0 +1,30 @@
+﻿<div class="jumbotron">
+    <span>Team Name: </span><input type="text" ng-model="eventAddEditManager.eventDetailsCopy.teamName" disabled="disabled" />
+    <span>event id: </span><input type="text" ng-model="eventAddEditManager.eventDetailsCopy.eventId" disabled="disabled" />
+    <span>Event Name: </span><input type="text" ng-model="eventAddEditManager.eventDetailsCopy.eventName" />
+    <span>Event Date: </span><input type="text" ng-model="eventAddEditManager.eventDetailsCopy.eventDate" />
+    <ul ng-show="eventAddEditManager.eventDetailsCopy.preCheckList" class="list-group">
+        Pre check list
+        <li ng-repeat="detail in eventAddEditManager.eventDetailsCopy.preCheckList">
+            <input type="text" ng-model="detail.itemName"/>
+        </li>
+        <li>
+            <input type="text" ng-model="newPreCheckListItem" />
+            <input type="button" ng-click="eventAddEditManager.addNewCheckListItem()"/>
+        </li>
+    </ul>
+    <ul ng-show="eventAddEditManager.eventDetailsCopy.inCheckList" class="list-group">
+        In check list
+        <li ng-repeat="detail in eventAddEditManager.eventDetailsCopy.inCheckList">
+            <input type="text" ng-model="detail.itemName" />
+        </li>
+    </ul>
+    <ul ng-show="eventAddEditManager.eventDetailsCopy.preCheckList" class="list-group">
+        Post check list
+        <li ng-repeat="detail in eventAddEditManager.eventDetailsCopy.postCheckList">
+            <input type="text" ng-model="detail.itemName" />
+        </li>
+    </ul>
+    <input type="submit" ng-click="eventAddEditManager.saveEventDetails()" value="submit" />
+    <input type="button" ng-click="eventAddEditManager.redirectToHome()" value="Cancel" />
+</div>

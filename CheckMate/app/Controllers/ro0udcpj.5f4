@@ -1,0 +1,19 @@
+﻿module checkMate.Controllers {
+    export class EventController {
+        eventService: Interfaces.IEventService;
+        static $inject = ["checkMate.Services.EventService"];
+        events: Array<Models.Event>;
+
+        constructor(eventService: Interfaces.IEventService) {
+            this.eventService = eventService;
+            this.events = this.eventService.getEventList();
+        }
+
+        //events: Array<Interfaces.IEvent>;
+
+        getEvents = () => {
+            this.events = this.eventService.getEventList();
+        }
+    }
+    angular.module("checkMate").controller("checkMate.Controllers.eventController", EventController);
+}

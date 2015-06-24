@@ -1,0 +1,44 @@
+﻿<div class="jumbotron">
+    <select ng-options="event.teamId as event.teamName for event in eventList.events | unique: 'teamId' " ng-model="selectedTeam">
+        <option value="">All</option>
+    </select>
+    <input type="text" value="Free text filter " ng-model="freeTextFilter"/>
+    <a href="#/addEvent/-1">Create new Event</a>
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li ng-show="eventList.events" class="list-group-item"
+                    ng-repeat="event in eventList.events | filter: freeTextFilter | filter:{teamId: selectedTeam || ''}">
+                    <a ng-click="eventList.getEventDetails(event.eventId)">Team: {{event.teamName}} Event: {{event.eventName}} Day: {{event.eventDate}}</a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div class="cointainer">
+                <ul class="list-group" ng-show="eventList.eventDetails">
+                    <a href="#/editEvent/{{eventList.eventDetails.eventId}}">Edit event</a>
+                    Pre check list
+                    <li class="list-group-item"
+                        ng-repeat="detail in eventList.eventDetails.preCheckList">
+                        {{detail.itemName}}<input type="checkbox" ng-model="detail.itemCompleted" ng-disabled="detail.itemCompleted"/>
+                    </li>
+                </ul>
+                <ul class="list-group" ng-show="eventList.eventDetails">
+                    In Check List
+                    <li class="list-group-item"
+                        ng-repeat="detail in eventList.eventDetails.inCheckList">
+                        {{detail.itemName}}<input type="checkbox" ng-model="detail.itemCompleted" ng-disabled="detail.itemCompleted" />
+                    </li>
+                </ul>
+                <ul class="list-group" ng-show="eventList.eventDetails">
+                    Post check List
+                    <li ng-show="eventList.eventDetails" class="list-group-item"
+                        ng-repeat="detail in eventList.eventDetails.postCheckList">
+                        {{detail.itemName}}<input type="checkbox" ng-model="detail.itemCompleted" ng-disabled="detail.itemCompleted" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</div>
